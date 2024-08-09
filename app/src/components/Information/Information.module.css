@@ -9,10 +9,12 @@
 	cursor: default;
 }
 
-/* .currentX {
+.X {
+	background-color: var(--color-cross);
 	box-shadow: 0 0 150px var(--color-cross);
 }
 
-.currentO {
+.O {
+	background-color: var(--color-nought);
 	box-shadow: 0 0 150px var(--color-nought);
-} */
+}

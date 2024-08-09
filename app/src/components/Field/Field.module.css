@@ -7,13 +7,13 @@
 	position: relative;
 }
 
-/* .currentX {
-	box-shadow: 0 0 150px var(--color-cross);
+.X {
+	box-shadow: 0 0 20px var(--color-cross);
 }
 
-.currentO {
-	box-shadow: 0 0 150px var(--color-nought);
-} */
+.O {
+	box-shadow: 0 0 20px var(--color-nought);
+}
 
 .cell {
 	background-color: var(--color-dark);

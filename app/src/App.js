@@ -27,44 +27,10 @@ function App() {
 	const [isGameEnded, setIsGameEnded] = useState(false);
 	const [isDraw, setIsDraw] = useState(false);
 
-	// const checkWinner = (field, currentPlayer) => {
-	// 	WIN_PATTERNS.forEach((pattern) => {
-	// 		const [a, b, c] = pattern;
-	// 		if (field[a] && field[a] === field[b] && field[b] === field[c]) {
-	// 			setIsGameEnded(true);
-	// 			setCurrentPlayer(currentPlayer);
-	// 		}
-	// 	});
-	// };
-
 	const checkWinner = (field, currentPlayer) => {
 		return WIN_PATTERNS.some((pattern) =>
 			pattern.every((index) => field[index] === currentPlayer),
 		);
-	};
-
-	const handleClick = (index) => {
-		if (isGameEnded) {
-			resetGame();
-		} else if (!field[index]) {
-			const newField = [
-				...field.slice(0, index),
-				currentPlayer,
-				...field.slice(index + 1),
-			];
-			setField(newField);
-			checkWinner(newField, currentPlayer);
-			if (checkWinner(newField, currentPlayer)) {
-				setIsGameEnded(true);
-				console.log("winner");
-				return;
-			}
-			if (newField.every((cell) => cell !== "")) {
-				setIsDraw(true);
-			}
-
-			setCurrentPlayer((prev) => (prev === PLAYER.cross ? PLAYER.nought : PLAYER.cross));
-		}
 	};
 
 	const resetGame = () => {
@@ -74,16 +40,43 @@ function App() {
 		setField(Array(9).fill(""));
 	};
 
+	const handleClick = (index) => {
+		if (isGameEnded || isDraw) {
+			resetGame();
+		} else if (!field[index]) {
+			const newField = [
+				...field.slice(0, index),
+				currentPlayer,
+				...field.slice(index + 1),
+			];
+			setField(newField);
+			if (checkWinner(newField, currentPlayer)) {
+				setIsGameEnded(true);
+				return;
+			}
+			if (newField.every((cell) => cell !== "")) {
+				setIsDraw(true);
+				return;
+			}
+
+			setCurrentPlayer((prev) => (prev === PLAYER.cross ? PLAYER.nought : PLAYER.cross));
+		}
+	};
+
 	return (
 		<div className={styles.app}>
 			<div className={styles.game}>
-				<section className={`${stylesI.info}`}>
+				<section className={`${stylesI.info} ${stylesI[currentPlayer]}`}>
 					{isDraw
 						? "Ничья"
 						: isGameEnded
 							? `Победа: ${currentPlayer}`
 							: `Ходит: ${currentPlayer}`}
 				</section>
+
+				{/* Field: field, handleClick */}
+				{/* <Field field={field} handleClick={handleClick} /> */}
+
 				<section className={stylesF.field}>
 					{field.map((cell, index) => (
 						<button
@@ -93,6 +86,7 @@ function App() {
 						/>
 					))}
 				</section>
+
 				{isDraw || isGameEnded ? (
 					<button className={styles.resetButton} onClick={resetGame}>
 						Играть снова
