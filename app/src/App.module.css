@@ -1,0 +1,32 @@
+.app {
+	height: 100%;
+	background-color: var(--color-bg);
+}
+
+.game {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+}
+
+.resetButton {
+	height: 80px;
+	width: 450px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-dark);
+	color: var(--color-light);
+}
+
+.resetButton:active {
+	background-color: var(--color-dark-active);
+}
+
+.void {
+	height: 80px;
+	width: 450px;
+}

@@ -1,0 +1,60 @@
+.field {
+	width: 650px;
+	aspect-ratio: 1 / 1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	position: relative;
+}
+
+/* .currentX {
+	box-shadow: 0 0 150px var(--color-cross);
+}
+
+.currentO {
+	box-shadow: 0 0 150px var(--color-nought);
+} */
+
+.cell {
+	background-color: var(--color-dark);
+	width: 210px;
+	aspect-ratio: 1 / 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.cell:hover {
+	transition: 0.08s ease-in-out;
+	background-color: var(--color-dark-hover);
+}
+
+.X::after,
+.X::before {
+	content: "";
+	position: absolute;
+	width: 200px;
+	height: 20px;
+	background-color: var(--color-cross);
+	border-radius: 20px;
+}
+
+.X::after {
+	transform: rotate(45deg);
+}
+
+.X::before {
+	transform: rotate(-45deg);
+}
+
+.O::before {
+	content: "";
+	position: absolute;
+	width: 180px;
+	aspect-ratio: 1 / 1;
+	border: 20px solid var(--color-nought);
+	border-radius: 50%;
+}
