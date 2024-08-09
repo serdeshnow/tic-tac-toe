@@ -1,6 +1,6 @@
 .info {
-	height: 80px;
-	width: 450px;
+	width: min(450px, 23.438vw);
+	aspect-ratio: 5 / 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;

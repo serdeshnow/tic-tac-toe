@@ -1,10 +1,12 @@
 .field {
-	width: 650px;
+	width: min(650px, 33.854vw);
 	aspect-ratio: 1 / 1;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(3, min(210px, 10.938vw));
+	grid-template-rows: repeat(3, min(210px, 10.938vw));
+	gap: min(10px, 0.521vw);
 	position: relative;
+	transition: none;
 }
 
 .X {
@@ -17,13 +19,13 @@
 
 .cell {
 	background-color: var(--color-dark);
-	width: 210px;
+	width: min(210px, 10.938vw);
 	aspect-ratio: 1 / 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	transition: all 0.3s ease-in-out;
+	/* transition: all 0.3s ease-in-out; */
 	cursor: pointer;
 }
 
@@ -36,8 +38,8 @@
 .X::before {
 	content: "";
 	position: absolute;
-	width: 200px;
-	height: 20px;
+	width: min(200px, 10.417vw);
+	aspect-ratio: 10 / 1;
 	background-color: var(--color-cross);
 	border-radius: 20px;
 }
@@ -53,8 +55,8 @@
 .O::before {
 	content: "";
 	position: absolute;
-	width: 180px;
+	width: min(180px, 9.375vw);
 	aspect-ratio: 1 / 1;
-	border: 20px solid var(--color-nought);
+	border: min(20px, 1.042vw) solid var(--color-nought);
 	border-radius: 50%;
 }

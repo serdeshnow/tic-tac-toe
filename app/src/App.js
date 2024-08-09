@@ -1,9 +1,7 @@
-import styles from "./App.module.css";
-import stylesI from "./components/Information/Information.module.css";
-import stylesF from "./components/Field/Field.module.css";
-// import Field from "./components/Field/Field";
-// import Information from "./components/Information/Information";
+import AppLayout from "./AppLayout.js";
 import { useState } from "react";
+
+// Не видел смысла в InformationLayout и FieldLayout
 
 function App() {
 	const PLAYER = {
@@ -42,60 +40,39 @@ function App() {
 
 	const handleClick = (index) => {
 		if (isGameEnded || isDraw) {
-			resetGame();
+			resetGame(); // Start new game on field click
 		} else if (!field[index]) {
 			const newField = [
 				...field.slice(0, index),
 				currentPlayer,
 				...field.slice(index + 1),
 			];
+
 			setField(newField);
+			// Winner
 			if (checkWinner(newField, currentPlayer)) {
 				setIsGameEnded(true);
 				return;
 			}
+			// Draw
 			if (newField.every((cell) => cell !== "")) {
 				setIsDraw(true);
 				return;
 			}
-
+			// ChangeCurrentPlayer
 			setCurrentPlayer((prev) => (prev === PLAYER.cross ? PLAYER.nought : PLAYER.cross));
 		}
 	};
 
 	return (
-		<div className={styles.app}>
-			<div className={styles.game}>
-				<section className={`${stylesI.info} ${stylesI[currentPlayer]}`}>
-					{isDraw
-						? "Ничья"
-						: isGameEnded
-							? `Победа: ${currentPlayer}`
-							: `Ходит: ${currentPlayer}`}
-				</section>
-
-				{/* Field: field, handleClick */}
-				{/* <Field field={field} handleClick={handleClick} /> */}
-
-				<section className={stylesF.field}>
-					{field.map((cell, index) => (
-						<button
-							className={`${stylesF.cell} ${field[index] && stylesF[field[index]]}`}
-							onClick={() => handleClick(index)}
-							key={index}
-						/>
-					))}
-				</section>
-
-				{isDraw || isGameEnded ? (
-					<button className={styles.resetButton} onClick={resetGame}>
-						Играть снова
-					</button>
-				) : (
-					<div className={styles.void}></div>
-				)}
-			</div>
-		</div>
+		<AppLayout
+			isDraw={isDraw}
+			isGameEnded={isGameEnded}
+			currentPlayer={currentPlayer}
+			field={field}
+			handleClick={handleClick}
+			resetGame={resetGame}
+		/>
 	);
 }
 

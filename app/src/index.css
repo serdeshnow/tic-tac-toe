@@ -146,3 +146,27 @@ legend {
 	font-size: 40px;
 	height: 100%;
 }
+
+@media screen and (max-width: 1200px) {
+	#root {
+		font-size: 30px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	#root {
+		font-size: 25px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#root {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	#root {
+		font-size: 14px;
+	}
+}
